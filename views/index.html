@@ -32,7 +32,7 @@
 
       <div class="post-list">
         <ul ng-repeat="posts in postsData">
-          <li><h3>&nbsp;{{ posts.author }}<br>{{ posts.draft }}</li></h3><hr>
+          <li><h3><input class="lead" type="checkbox" ng-click="deletePost(posts.id)">{{ posts.id }} <br>&nbsp;{{ posts.author }}<br>{{ posts.draft }}</li></h3><hr>
         </ul>
       </div>
 

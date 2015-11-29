@@ -24,8 +24,19 @@ angular.module('blogPost', [])
                 console.log(data);
             })
             .error(function(data) {
+                console.log('Error: ' + error);
+            });
+    };
+
+    // Delete a post
+    $scope.deletePost = function(postID) {
+        $http.delete('/posts/' + postID)
+            .success(function(data) {
+                $scope.postData = data;
                 console.log(data);
-                //console.log('Error: ' + error);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
             });
     };
 
