@@ -1,0 +1,6 @@
+h1 View posts 
+br
+div(class="post-list")
+	div(ng-repeat='post in postsData track by $index')
+		h3 {{ posts.id }} <br>&nbsp;{{ posts.author }}
+			div {{ posts.draft }}

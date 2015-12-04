@@ -1,0 +1,20 @@
+doctype
+html(ng-app="blogApp")
+  head
+    <base href="/">
+    meta(charset='utf8')
+    title Blog Posts
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/style.css')
+  body(ng-controller="postController")
+    div
+      h1 layout view
+    div
+      div(ng-view)
+
+    script(src='http://code.jquery.com/jquery-1.11.2.min.js')
+    script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.12/angular.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.12/angular-route.js')
+    script(src='javascripts/app.js')
+    script(src='javascripts/controller.js')
