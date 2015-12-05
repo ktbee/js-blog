@@ -52,11 +52,46 @@ router.post('/api/posts', function(req, res) {
     });
 });
 
+// Read one post
+router.get('/api/posts/:post_id', function(req, res) {
+
+    var results = [];
+
+    var id = req.params.post_id;
+    console.log("id:" + req.params.post_id);
+
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        // SQL Query > View Data
+        var query =  client.query("SELECT * FROM posts WHERE id=($1)", [id]);
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+
+    });
+
+}); 
+
 // Read posts
 router.get('/api/posts', function(req, res) {
 
     var results = [];
 
+    console.log("read all posts");
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
@@ -73,7 +108,7 @@ router.get('/api/posts', function(req, res) {
         query.on('row', function(row) {
             results.push(row);
         });
-        console.log(results);
+
         // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
@@ -84,42 +119,8 @@ router.get('/api/posts', function(req, res) {
 
 });
 
+
 /*
-// Read one post
-router.get('/api/posts/:post_id', function(req, res) {
-
-    var results = [];
-
-    var id = req.params.post_id;
-
-    console.log(req.params.post_id);
-
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
-        if(err) {
-          done();
-          console.log(err);
-          return res.status(500).json({ success: false, data: err});
-        }
-
-        // SQL Query > View Data
-        var query =  client.query("SELECT FROM posts WHERE id=($1)", [id]);
-
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-        console.log(results);
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            done();
-            return res.json(results);
-        });
-
-    });
-
-}); 
 
 // Update post
 router.put('/api/posts/:post_id', function(req, res) {
@@ -168,7 +169,6 @@ router.delete('/api/posts/:post_id', function(req, res) {
 
     // Grab data from the URL parameters
     var id = req.params.post_id;
-
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {

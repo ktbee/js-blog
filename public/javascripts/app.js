@@ -1,10 +1,10 @@
-var blogApp = angular.module('blogApp', ['ngRoute', 'blogAppControllers']).
+var blogApp = angular.module('blogApp', ['ngRoute', 'blogAppControllers'])
 
-config(['$routeProvider', '$locationProvider',
+.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true);
-      $routeProvider
-        .when('/posts', {
+      $routeProvider.
+        when('/posts', {
           templateUrl: 'partials/index',
           controller: 'postController'
         }).
@@ -13,8 +13,11 @@ config(['$routeProvider', '$locationProvider',
           controller: 'postController' }).
         when('/posts/manage', {
           templateUrl: 'partials/manage.jade',
-          controller: 'postController' })
-        .otherwise({ redirectTo: '/' });
+          controller: 'postController' }).
+        when('/posts/:postID', {
+          templateUrl: 'partials/view_post',
+          controller: 'postController' }).
+        otherwise({ redirectTo: '/' });
     }
   ]
 );
