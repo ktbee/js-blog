@@ -39,8 +39,6 @@ router.post('/api/posts', function(req, res) {
             done();
             return res.json(results);
         });
-
-
     });
 });
 
@@ -48,26 +46,21 @@ router.post('/api/posts', function(req, res) {
 router.get('/api/posts/:post_id', function(req, res) {
 
     var results = [];
-
     var id = req.params.post_id;
 
-    // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
         if(err) {
           done();
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
 
-        // SQL Query > View Data
         var query =  client.query("SELECT * FROM posts WHERE id=($1)", [id]);
 
-        // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
         });
-        // After all data is returned, close connection and return results
+
         query.on('end', function() {
             done();
             return res.json(results);
@@ -82,24 +75,19 @@ router.get('/api/posts', function(req, res) {
 
     var results = [];
 
-    // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
         if(err) {
           done();
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
 
-        // SQL Query > Select Data
         var query = client.query("SELECT * FROM posts ORDER BY id ASC;");
 
-        // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
         });
 
-        // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
             return res.json(results);
@@ -117,31 +105,25 @@ router.put('/api/posts/:post_id', function(req, res) {
 
     // Grab data from the URL parameters
     var id = req.params.post_id;
+    var updateDate = new Date();
 
-    // Grab data from http request
-    var data = {title: req.body.title, draft: req.body.draft, author: req.body.author};
+    var data = {title: req.body.title, draft: req.body.draft, author: req.body.author, updated: updateDate};
 
-    // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
         if(err) {
           done();
           console.log(err);
           return res.status(500).send(json({ success: false, data: err}));
         }
 
-        // SQL Query > Update Data
         client.query("UPDATE posts SET title=($1), author=($2),  draft=($3) WHERE id=($4)", [data.title, data.author, data.draft, id]);
 
-        // SQL Query > Select Data
         var query = client.query("SELECT * FROM posts ORDER BY id ASC");
 
-        // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
         });
 
-        // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
             return res.json(results);
@@ -154,31 +136,23 @@ router.put('/api/posts/:post_id', function(req, res) {
 router.delete('/api/posts/:post_id', function(req, res) {
 
     var results = [];
-
-    // Grab data from the URL parameters
     var id = req.params.post_id;
 
-    // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
         if(err) {
           done();
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
 
-        // SQL Query > Delete Data
         client.query("DELETE FROM posts WHERE id=($1)", [id]);
 
-        // SQL Query > Select Data
         var query = client.query("SELECT * FROM posts ORDER BY id ASC");
 
-        // Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
         });
 
-        // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
             return res.json(results);

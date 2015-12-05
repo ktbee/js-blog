@@ -9,7 +9,7 @@ var blogApp = angular.module('blogApp', ['ngRoute', 'initialValue', 'blogAppCont
           controller: 'postController'
         }).
         when('/posts/create', {
-          templateUrl: 'partials/create.jade',
+          templateUrl: 'partials/create_post.jade',
           controller: 'postController' }).
         when('/posts/manage', {
           templateUrl: 'partials/manage.jade',

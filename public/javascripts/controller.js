@@ -1,10 +1,11 @@
 var blogAppControllers = angular.module('blogAppControllers', []);
 
+
 blogAppControllers.controller('postController', ['$scope','$http',"$routeParams", function($scope, $http, $routeParams) {
 
 	$scope.postID = $routeParams.postID;
 	$scope.formData = {};
-	$scope.postData = {};
+	$scope.postsData = {};
 
 	
 	// Read posts
