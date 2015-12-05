@@ -11,6 +11,16 @@ a {
 	height: 500px;
 }
 
+.edit-buttons{
+	height: 3em;
+	margin: 1em;
+	text-align: center;
+}
+
+.edit-buttons button{
+	margin: 1em;
+}
+
 .post{
-	margin-bottom: 40px;
+	margin-bottom: 2em;
 }

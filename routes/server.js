@@ -19,7 +19,7 @@ router.post('/api/posts', function(req, res) {
     var results = [];
 
     // Grab data from http request
-    var data = {draft: req.body.draft, author: req.body.author};
+    var data = {title: req.body.title, draft: req.body.draft, author: req.body.author};
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
@@ -31,7 +31,7 @@ router.post('/api/posts', function(req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO posts(draft, author) values($1, $2)", [data.draft, data.author]);
+        client.query("INSERT INTO posts(title, draft, author) values($1, $2, $3)", [data.title, data.draft, data.author]);
 
         // SQL Query > Select Data
         var query = client.query("SELECT * FROM posts ORDER BY id ASC");

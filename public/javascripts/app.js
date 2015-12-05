@@ -9,10 +9,10 @@ config(['$routeProvider', '$locationProvider',
           controller: 'postController'
         }).
         when('/posts/create', {
-          templateUrl: 'partials/posts/create.jade',
+          templateUrl: 'partials/create.jade',
           controller: 'postController' }).
         when('/posts/manage', {
-          templateUrl: 'partials/posts/manage.jade',
+          templateUrl: 'partials/manage.jade',
           controller: 'postController' })
         .otherwise({ redirectTo: '/' });
     }
