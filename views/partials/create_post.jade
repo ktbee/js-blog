@@ -4,13 +4,12 @@ div(class="create-draft")
 		div(class="form-group")
 			h3 Title
 			input(type="text" id="title" class="form-control input-lg" placeholder="Enter post title..." ng-model="formData.title")
-			br
 			h3 Author
 			input(type="text" id="author" class="form-control input-lg" placeholder="Enter author" ng-model="formData.author")
 			h3 Tags (separted by commas)
 			input(type="text" id="tags" class="form-control input-lg" placeholder="Tag1, Tag2, Tag3 ..." ng-model="formData.tags")
 			br
 			h3 Draft
-			textarea(type="text" id="draft" rows="5" class="form-control input-lg" placeholder="Enter draft..." ng-model="formData.draft")
+			textarea(type="text" id="draft" rows="7" class="form-control input-lg" placeholder="Enter draft..." ng-model="formData.draft")
 			br
-			button(type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createDraft()") Add blog draft
+			button(type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createDraft()") Publish post
