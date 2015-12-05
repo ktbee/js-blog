@@ -1,4 +1,4 @@
-var blogApp = angular.module('blogApp', ['ngRoute', 'blogAppControllers'])
+var blogApp = angular.module('blogApp', ['ngRoute', 'initialValue', 'blogAppControllers'])
 
 .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
@@ -15,7 +15,10 @@ var blogApp = angular.module('blogApp', ['ngRoute', 'blogAppControllers'])
           templateUrl: 'partials/manage.jade',
           controller: 'postController' }).
         when('/posts/:postID', {
-          templateUrl: 'partials/view_post',
+          templateUrl: 'partials/view_post.jade',
+          controller: 'postController' }).
+        when('/posts/:postID/edit', {
+          templateUrl: 'partials/edit_post.jade',
           controller: 'postController' }).
         otherwise({ redirectTo: '/' });
     }
