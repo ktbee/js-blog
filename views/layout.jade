@@ -7,10 +7,29 @@ html(ng-app="blogApp")
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/style.css')
   body(ng-controller="postController")
-    div
-      h1 layout view
-    div
-      div(ng-view)
+
+    nav(class="navbar navbar-default navbar-fixed-top navbar-inverse")
+      div(class="container-fluid")
+        div(class="navbar-header")
+          button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+            span(class="sr-only")
+              Toggle navigation
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+          a(class="navbar-brand" href="#")
+            Series Blog
+
+        div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+          ul(class="nav navbar-nav")
+            li
+              a(href="#") View posts
+            li
+              a(href="#") Create new post
+            li
+              a(href="#") Manage posts
+
+    div(ng-view)
 
     script(src='http://code.jquery.com/jquery-1.11.2.min.js')
     script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')

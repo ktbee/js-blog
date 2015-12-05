@@ -4,10 +4,14 @@ var path = require('path');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../', 'config'));
 
-/* GET home page. 
-router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
-}); */
+exports.index = function(req, res){
+  res.render('layout');
+};
+
+exports.partials = function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
+};
 
 // CREATE
 router.post('/api/posts', function(req, res) {
@@ -68,7 +72,7 @@ router.get('/api/posts', function(req, res) {
         query.on('row', function(row) {
             results.push(row);
         });
-
+        console.log(results);
         // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
@@ -115,6 +119,6 @@ router.delete('/api/posts/:post_id', function(req, res) {
         });
     });
 
-});
+}); 
 
 module.exports = router;

@@ -4,12 +4,15 @@ config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true);
       $routeProvider
-        .when('/', {
+        .when('/posts', {
           templateUrl: 'partials/index',
           controller: 'postController'
         }).
-        when('/post/create', {
-          templateUrl: 'partials/create.jade',
+        when('/posts/create', {
+          templateUrl: 'partials/posts/create.jade',
+          controller: 'postController' }).
+        when('/posts/manage', {
+          templateUrl: 'partials/posts/manage.jade',
           controller: 'postController' })
         .otherwise({ redirectTo: '/' });
     }

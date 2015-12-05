@@ -9,7 +9,7 @@ blogAppControllers.controller('postController', function($scope, $http) {
 	$http.get('/api/posts')
 	    .success(function(data) {
 	        $scope.postsData = data;
-	        console.log(data);
+	        //console.log($scope.postData);
 	    })
 	    .error(function(error) {
 	        console.log('Error: ' + error);

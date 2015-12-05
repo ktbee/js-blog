@@ -9,9 +9,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index.js');
+var routes = require('./routes/client.js');
 var users = require('./routes/users');
-var api = require('./routes/api.js');
+var server = require('./routes/server.js');
 
 var app = module.exports = express();
 
@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', server);
 
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);

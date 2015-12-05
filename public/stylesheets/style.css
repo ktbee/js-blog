@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+#draft {
+	height: 500px;
+}
+
+.post{
+	margin-bottom: 40px;
+}
