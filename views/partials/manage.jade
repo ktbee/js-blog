@@ -2,10 +2,13 @@ h1 Manage posts
 br
 div(class="post-list")
 	div(ng-repeat='post in postsData track by $index' class="post")
-		h3 {{ post.title }} 
-		h4 By: {{ post.author }}
-		div {{ post.draft }}
-			div(class="edit-buttons")
-				a(href="posts/{{ post.id }}/edit")
-					button(class="btn btn-default btn-lg btn-info") Edit post
-				button(class="btn btn-default  btn-lg btn-danger" ng-click="deletePost(post.id)") Delete post
+		h3 Title: {{ post.title }} 
+		h3 Date: {{ post.published | date: 'MMM d, y'}}
+		h4 Author: {{ post.author }}
+		div Post: {{ post.draft }}
+		div(class="edit-buttons")
+			a(href="posts/{{ post.id }}")
+				button(class="btn btn-default btn-lg btn-success pull-left") View post
+			a(href="posts/{{ post.id }}/edit")
+				button(class="btn btn-default btn-lg btn-info pull-left") Edit post
+			button(class="btn btn-default  btn-lg btn-danger pull-right" ng-click="deletePost(post.id)") Delete post
