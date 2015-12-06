@@ -10,7 +10,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/client.js');
-var users = require('./routes/users');
 var server = require('./routes/server.js');
 
 var app = module.exports = express();

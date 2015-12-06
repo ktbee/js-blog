@@ -23,7 +23,9 @@ router.post('/api/posts', function(req, res) {
           return res.status(500).json({ success: false, data: err});
         }
 
-        // SQL Query > Insert Data
+        // SQL Query > Insert Data 
+        // Protects again SQL injections using parameters in the query
+        // https://github.com/brianc/node-postgres/wiki/Prepared-Statements#user-content-parameterized-queries
         client.query("INSERT INTO posts(title, draft, author, published) values($1, $2, $3, $4)", [data.title, data.draft, data.author, data.published]);
 
         // SQL Query > Select Data
