@@ -5,7 +5,9 @@ div(class="post-list")
 		h3 Title: {{ post.title }} 
 		h3 Date: {{ post.published | date: 'MMM d, y'}}
 		h4 Author: {{ post.author }}
-		div Post: {{ post.draft }}
+		divp(ng-show="{{ post.updated }}") 
+			h5 Last updated: {{ post.updated | date: 'MMM d, y' }} 
+		div {{ post.draft }}
 		div(class="edit-buttons")
 			a(href="posts/{{ post.id }}")
 				button(class="btn btn-default btn-lg btn-success pull-left") View post

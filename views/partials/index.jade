@@ -3,7 +3,9 @@ br
 div(class="post-list")
 	
 	div(ng-repeat='post in postsData track by $index' class="post")
-		h3(id="{{ post.id }}") Title: {{ post.title }} 
-		h3 Date: {{ post.published | date: 'MMM d, y'}}
-		h4 Author: {{ post.author }}
-		div Post: {{ post.draft }}
+		h3(id="{{ post.id }}") {{ post.title }} 
+		h4 {{ post.published | date: 'MMM d, y'}}
+		h4 By: {{ post.author }}
+		div {{ post.draft }}
+		br
+		p(ng-show="{{ post.updated }}") Updated: {{ post.updated | date: 'MMM d, y' }}
