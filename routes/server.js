@@ -23,15 +23,17 @@ router.post('/api/posts', function(req, res) {
           return res.status(500).json({ success: false, data: err});
         }
 
-        // SQL Query > Insert Data
+        // SQL Query > Insert Data for post and tags
         client.query("INSERT INTO posts(title, draft, author, published) values($1, $2, $3, $4)", [post.title, post.draft, post.author, post.published]);
-        console.log(tags);
+        
         for( tag in tags ){
-            client.query("INSERT INTO tags(tag) values($1)", [tags[tag].trim()]);
+            client.query("INSERT INTO tags(tag) values($1) ON CONFLICT DO NOTHING", [tags[tag].trim()]);
+            var query = client.query("SELECT * FROM tags WHERE tag=($1)", [tags[tag].trim()]);
+            console.log(query);
         }
         
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM posts ORDER BY id ASC");
+        query = client.query("SELECT * FROM tags ORDER BY id ASC");
 
         // Stream results back one row at a time
         query.on('row', function(row) {
