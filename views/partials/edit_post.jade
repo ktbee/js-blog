@@ -3,12 +3,10 @@ div(ng-repeat='post in postsData track by $index' class="create-draft")
 	form
 		div(class="form-group")
 			h3 Title
-			input(type="text" id="title" class="form-control input-lg" initial-value value="{{ post.title }}" ng-model="post.title" ng-model-options="{ getterSetter: true }")
-			br
+			input(type="text" id="title" class="form-control input-lg" initial-value value="{{ post.title }}" ng-model="post.title")
 			h3 Author
 			input(type="text" id="author" class="form-control input-lg" initial-value value="{{post.author}}" ng-model="post.author")
-			br
 			h3 Draft
-			input(type="text" id="draft" class="form-control input-lg" initial-value value="{{post.draft}}" ng-model="post.draft")
+			textarea(type="text" id="draft" class="form-control input-lg" rows="5" initial-value value="{{post.draft}}" ng-model="post.draft")
 			br
-			button(type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updatePost(post)") Add blog draft
+			button(type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updatePost(post)") Edit post

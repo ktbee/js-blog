@@ -116,7 +116,7 @@ router.put('/api/posts/:post_id', function(req, res) {
           return res.status(500).send(json({ success: false, data: err}));
         }
 
-        client.query("UPDATE posts SET title=($1), author=($2),  draft=($3) WHERE id=($4)", [data.title, data.author, data.draft, id]);
+        client.query("UPDATE posts SET title=($1), author=($2),  draft=($3), updated=($4) WHERE id=($5)", [data.title, data.author, data.draft, updateDate, id]);
 
         var query = client.query("SELECT * FROM posts ORDER BY id ASC");
 

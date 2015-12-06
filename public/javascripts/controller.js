@@ -1,11 +1,10 @@
 var blogAppControllers = angular.module('blogAppControllers', []);
 
-
 blogAppControllers.controller('postController', ['$scope','$http',"$routeParams", function($scope, $http, $routeParams) {
 
 	$scope.postID = $routeParams.postID;
 	$scope.formData = {};
-	$scope.postsData = {};
+	$scope.postData = {};
 
 	
 	// Read posts
@@ -36,7 +35,7 @@ blogAppControllers.controller('postController', ['$scope','$http',"$routeParams"
 	    $http.post('/api/posts', $scope.formData)
 	        .success(function(data) {
 	            $scope.formData = {};
-	            $scope.postsData = data;
+	            $scope.postData = data;
 	            console.log(data);
 	        })
 	        .error(function(data) {
@@ -46,13 +45,13 @@ blogAppControllers.controller('postController', ['$scope','$http',"$routeParams"
 
 	// Update post
 	$scope.updatePost = function(post) {
-		// get form data
+        console.log(post);
         $scope.formData = angular.copy(post);
         
         $http.put('/api/posts/' + $scope.postID, $scope.formData)
             .success(function(data) {
                 $scope.formData = {};
-                $scope.postsData = data;
+                $scope.postData = data;
             })
             .error(function(error) {
                 console.log('Error: ' + error);
@@ -63,7 +62,7 @@ blogAppControllers.controller('postController', ['$scope','$http',"$routeParams"
 	$scope.deletePost = function(postID) {
 	    $http.delete('/api/posts/' + postID)
 	        .success(function(data) {
-	            $scope.postsData = data;
+	            $scope.postData = data;
 	            console.log(data);
 	        })
 	        .error(function(data) {

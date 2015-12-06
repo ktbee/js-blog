@@ -20,7 +20,7 @@ var blogApp = angular.module('blogApp', ['ngRoute', 'initialValue', 'blogAppCont
         when('/posts/:postID/edit', {
           templateUrl: 'partials/edit_post.jade',
           controller: 'postController' }).
-        otherwise({ redirectTo: '/' });
+        otherwise({ redirectTo: '/posts' });
     }
   ]
 );
