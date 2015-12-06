@@ -14,11 +14,7 @@ query = client.query("INSERT INTO posts(title, author, published, draft) values(
 query = client.query("INSERT INTO posts(title, author, published, draft) values($1, $2, $3, $4)", ['Test post title 3','Test McTester','2015-11-30 15:51:51.345','Nulla sodales dignissim nisi eu elementum. Duis eleifend mollis velit elementum commodo. Sed tempus sagittis sapien quis facilisis. Vestibulum eu est vitae erat finibus efficitur. Pellentesque gravida, ex a auctor sodales, ligula nisl ultricies nunc, at porttitor ex eros eget augue. Donec a purus turpis. Cras mollis lacinia leo, sit amet lacinia mi iaculis sit amet. Pellentesque a luctus massa, vel tincidunt nisl. In lacinia felis eu varius volutpat. Cras lectus tellus, tempus in nibh et, congue hendrerit massa. Nam ut laoreet arcu. Nam varius, arcu quis elementum suscipit, justo justo eleifend justo, a molestie leo odio in nulla.'])
 
 // tags table
-query = client.query('CREATE TABLE IF NOT EXISTS tags(id SERIAL PRIMARY KEY, tag VARCHAR(255) UNIQUE)');
-
-// tags - posts pivot table
-query = client.query('CREATE TABLE IF NOT EXISTS post_tag(id SERIAL PRIMARY KEY, post_id INT references posts(id), tag_id INT references tags(id))');
-
+query = client.query('CREATE TABLE IF NOT EXISTS tags(id SERIAL PRIMARY KEY, tag VARCHAR(255), post_id INT)');
 
 query.on('end', function() { client.end(); });
 
