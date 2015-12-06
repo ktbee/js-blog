@@ -7,6 +7,6 @@ div(ng-repeat='post in postsData track by $index' class="create-draft")
 			h3 Author
 			input(type="text" id="author" class="form-control input-lg" initial-value value="{{post.author}}" ng-model="post.author")
 			h3 Draft
-			textarea(type="text" id="draft" class="form-control input-lg" rows="5" initial-value value="{{post.draft}}" ng-model="post.draft")
+			textarea(type="text" id="draft" class="form-control input-lg" rows="9" initial-value value="{{post.draft}}" ng-model="post.draft")
 			br
 			button(type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updatePost(post)") Edit post
