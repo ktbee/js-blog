@@ -1,6 +1,6 @@
 h1 Edit a post
 div(ng-repeat='post in postsData track by $index' class="create-draft")
-	form
+	form(action="/posts")
 		div(class="form-group")
 			h3 Title
 			input(type="text" id="title" class="form-control input-lg" initial-value value="{{ post.title }}" ng-model="post.title")

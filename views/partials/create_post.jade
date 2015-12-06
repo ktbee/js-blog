@@ -1,6 +1,6 @@
 h1 Write a new blog post
 div(class="create-draft")
-	form
+	form(action="/posts")
 		div(class="form-group")
 			h3 Title
 			input(type="text" id="title" class="form-control input-lg" placeholder="Enter post title..." ng-model="formData.title")
