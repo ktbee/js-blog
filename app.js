@@ -30,19 +30,19 @@ app.use('/', server);
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-/*
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 }); 
-*/
+
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
 module.exports = app;
-/*
+
 
 // error handlers
 // development error handler
@@ -67,5 +67,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-*/
+
 
